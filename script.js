@@ -72,7 +72,6 @@ let increment = (id) => {
         search.qty += 1;
     }
 
-    console.log(basket);
     update(selectedItem.id);
 }
 
@@ -87,11 +86,16 @@ let decrement = (id) => {
         search.qty -= 1;
     }
 
-    console.log(basket);
     update(selectedItem.id);
 }
 
 let update = (id) => {
     let search = basket.find((x) => x.id === id);
     document.getElementById(id).innerHTML = search.qty;
+    calculation();
+}
+
+let calculation = () => {
+    let cartIcon = document.getElementById("cartAmount");
+    cartIcon.innerHTML = basket.map((x) => x.qty).reduce((x,y) => x + y, 0);
 }
